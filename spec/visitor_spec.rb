@@ -1,5 +1,6 @@
 require 'rspec'
 require './lib/visitor'
+require './lib/ride'
 
 describe Visitor do
   it 'exists' do
@@ -40,5 +41,16 @@ describe Visitor do
     expect(visitor2.tall_enough?(54)).to be false
     expect(visitor3.tall_enough?(54)).to be true
     expect(visitor1.tall_enough?(64)).to be false
+  end
+
+  it 'will decrease spending money when paid for ride' do
+    visitor1 = Visitor.new('Bruce', 54, '$10')
+    visitor1.paid(1)
+
+    expect(visitor1.spending_money).to eq(9)
+
+    visitor1.paid(5)
+
+    expect(visitor1.spending_money).to eq(4)
   end
 end

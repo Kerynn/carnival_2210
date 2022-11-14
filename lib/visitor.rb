@@ -1,17 +1,14 @@
 class Visitor
   attr_reader :name,
               :height,
-              :preferences
+              :preferences,
+              :spending_money
 
   def initialize(name, height, spending_money)
     @name = name
     @height = height
-    @spending_money = spending_money
+    @spending_money = spending_money.delete('$').to_i
     @preferences = []
-  end
-
-  def spending_money
-    @spending_money.delete('$').to_i
   end
 
   def add_preferences(preference)
@@ -20,5 +17,9 @@ class Visitor
 
   def tall_enough?(threshold)
     @height >= threshold
+  end
+
+  def paid(admission_fee)
+    @spending_money -= admission_fee
   end
 end
