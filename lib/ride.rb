@@ -19,11 +19,11 @@ class Ride
   def board_rider(visitor)
     allowed = if visitor.tall_enough?(@min_height) && visitor.preferences.include?(@excitement)
       visitor.paid(@admission_fee)
+      @total_revenue += @admission_fee
       @rider_log[visitor] = [] << visitor
-    end 
+    end
     if !allowed.nil?
       @rider_log[visitor] = allowed.length
     end
-    @total_revenue += @admission_fee
   end
 end

@@ -18,7 +18,17 @@ class Carnival
         visitor.count
       end
     end
-
   end
 
+  def most_profitable_ride
+    @rides.max_by do |ride|
+      ride.total_revenue
+    end
+  end
+
+  def total_rides_revenue
+    @rides.sum do |ride|
+      ride.total_revenue
+    end 
+  end
 end
