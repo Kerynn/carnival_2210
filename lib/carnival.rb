@@ -12,6 +12,13 @@ class Carnival
     @rides << ride
   end
 
+  def most_popular_ride
+    @rides.max_by do |ride|
+      ride.rider_log.map do |visitor|
+        visitor.count
+      end
+    end
 
+  end
 
 end
